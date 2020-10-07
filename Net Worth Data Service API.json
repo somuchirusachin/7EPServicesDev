@@ -6,7 +6,12 @@
     "title": "Net Worth Data Service API"
   },
   "host": "7ep-test-api.7-eleven.com",
-  "basePath": "/net-worth/api/",
+  "tags": [
+    {
+      "name": "Net_worth",
+      "description": "Operations about Net_worth"
+    }
+  ],
   "schemes": [
     "https"
   ],
