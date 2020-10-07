@@ -1,21 +1,16 @@
- {
+{
   "swagger": "2.0",
   "info": {
-    "description": "API for 7ep-test-api.7-eleven.com",
-    "version": "V4",
-    "title": "Seveneleven"
+    "description": "This is Net Worth Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
+    "version": "V1",
+    "title": "Net Worth Data Service API"
   },
-  "host": "7ep-test-api.7-eleven.com",
-  "tags": [
-    {
-      "name": "Net_worth",
-      "description": "Operations about Net_worth"
-    }
-  ],
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/CTS799/net-worth211/V1",
   "schemes": [
     "https"
   ],
-   "security": [
+  "security": [
     {
       "api_key": [
         "UVAUPLHYyG2heh1v09SUIQ7GqzYA27EZ"
@@ -23,158 +18,30 @@
     }
   ],
   "paths": {
-    "/net-worth": {
+    "/api/{requestId}/{store}": {
       "get": {
         "tags": [
-          "Net_worth"
+          "net-worth-controller"
         ],
-        "description": "Get",
-        "operationId": "get",
-        "produces": [
-          "application/json"
-        ],
+        "operationId": "getNetWorthDetails",
         "parameters": [
           {
             "name": "requestId",
             "in": "path",
-            "description": "requestId",
-            "required": true,
-            "type": "string",
-            "x-example": "1234"
+            "required": true
           },
           {
             "name": "store",
             "in": "path",
-            "description": "store",
-            "required": true,
-            "type": "string",
-            "x-example": "12345c"
+            "required": true
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "examples": {
-              "application/json": {
-                "ResponseServiceHeader": {
-                  "RequestId": "string"
-                },
-                "NetWorth": {
-                  "StoreLetterCode": "string",
-                  "AvailableToDraw": 0,
-                  "NetWorth": 0,
-                  "MinimumNetWorth": 0,
-                  "Status": "string"
-                },
-                "Error": {
-                  "Code": "string",
-                  "Message": "string"
-                }
-              }
-            },
-            "schema": {
-              "$ref": "#/definitions/QueryNetWorth"
-            }
+            "description": "default response"
           }
-        },
-        "security": []
+        }
       }
-    }
-  },
-  "securityDefinitions": {},
-  "definitions": {
-    "QueryNetWorth": {
-      "required": [
-        "Error"
-      ],
-      "properties": {
-        "Error": {
-          "$ref": "#/definitions/Error"
-        },
-        "NetWorth": {
-          "$ref": "#/definitions/NetWorth"
-        },
-        "ResponseServiceHeader": {
-          "$ref": "#/definitions/ResponseServiceHeader"
-        }
-      },
-      "description": "Model for QueryNetWorth"
-    },
-    "Error": {
-      "required": [
-        "Code"
-      ],
-      "properties": {
-        "Code": {
-          "type": "string",
-          "x-example": "string"
-        },
-        "Message": {
-          "type": "string",
-          "x-example": "string"
-        }
-      },
-      "description": "Model for Error"
-    },
-    "NetWorth": {
-      "required": [
-        "AvailableToDraw"
-      ],
-      "properties": {
-        "AvailableToDraw": {
-          "type": "integer",
-          "format": "int32",
-          "x-example": "0"
-        },
-        "MinimumNetWorth": {
-          "type": "integer",
-          "format": "int32",
-          "x-example": "0"
-        },
-        "NetWorth": {
-          "type": "integer",
-          "format": "int32",
-          "x-example": "0"
-        },
-        "Status": {
-          "type": "string",
-          "x-example": "string"
-        },
-        "StoreLetterCode": {
-          "type": "string",
-          "x-example": "string"
-        }
-      },
-      "description": "Model for NetWorth"
-    },
-    "ResponseServiceHeader": {
-      "required": [
-        "RequestId"
-      ],
-      "properties": {
-        "RequestId": {
-          "type": "string",
-          "x-example": "string"
-        }
-      },
-      "description": "Model for ResponseServiceHeader"
-    },
-    "Get": {
-      "required": [
-        "Error"
-      ],
-      "properties": {
-        "Error": {
-          "$ref": "#/definitions/Error"
-        },
-        "NetWorth": {
-          "$ref": "#/definitions/NetWorth"
-        },
-        "ResponseServiceHeader": {
-          "$ref": "#/definitions/ResponseServiceHeader"
-        }
-      },
-      "description": "Model for Get"
     }
   }
 }
