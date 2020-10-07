@@ -23,31 +23,18 @@
           {
             "name": "requestId",
             "in": "path",
-            "required": true,
-            "type": "string"
+            "required": true
           },
           {
             "name": "store",
             "in": "path",
-            "required": true,
-            "type": "string"
+            "required": true
           }
         ],
         "responses": {
           "200": {
             "description": "default response"
           }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "Model": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
         }
       }
     }
