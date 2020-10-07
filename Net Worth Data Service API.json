@@ -1,15 +1,10 @@
 {
-  "openapi": "3.0.1",
+  "swagger": "2.0",
   "info": {
-    "title": "Net Worth Data Service API",
     "description": "This is Net Worth Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
-    "version": "1.0.0-oas3"
+    "version": "V1",
+    "title": "Net Worth Data Service API"
   },
-  "servers": [
-    {
-      "url": "https://7ep-test-api.7-eleven.com/net-worth"
-    }
-  ],
   "security": [
     {
       "api_key": [
@@ -29,102 +24,31 @@
             "name": "requestId",
             "in": "path",
             "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           },
           {
             "name": "store",
             "in": "path",
             "required": true,
-            "style": "simple",
-            "explode": false,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "default response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NetWorthResponse"
-                }
-              }
-            }
+            "description": "default response"
           }
         }
       }
     }
   },
-  "components": {
-    "schemas": {
-      "ErrorCode": {
-        "type": "object",
-        "properties": {
-          "Code": {
-            "type": "string"
-          },
-          "Message": {
-            "type": "string"
-          }
+  "definitions": {
+    "Model": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
         }
-      },
-      "NetWorthInfo": {
-        "type": "object",
-        "properties": {
-          "StoreLetterCode": {
-            "type": "string"
-          },
-          "AvailableToDraw": {
-            "type": "number",
-            "format": "double"
-          },
-          "NetWorth": {
-            "type": "number",
-            "format": "double"
-          },
-          "MinimumNetWorth": {
-            "type": "number",
-            "format": "double"
-          },
-          "Status": {
-            "type": "string"
-          }
-        }
-      },
-      "NetWorthResponse": {
-        "type": "object",
-        "properties": {
-          "ResponseServiceHeader": {
-            "$ref": "#/components/schemas/ResponseServiceHeader"
-          },
-          "NetWorth": {
-            "$ref": "#/components/schemas/NetWorthInfo"
-          },
-          "Error": {
-            "$ref": "#/components/schemas/ErrorCode"
-          }
-        }
-      },
-      "ResponseServiceHeader": {
-        "type": "object",
-        "properties": {
-          "RequestId": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "api_key": {
-        "type": "apiKey",
-        "name": "X-Subscription-Key",
-        "in": "header"
       }
     }
   }
