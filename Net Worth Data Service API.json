@@ -1,7 +1,175 @@
-{"swagger":"2.0","info":{"title":"Seveneleven","description":"API for 7ep-test-api.7-eleven.com","version":"0.0.0"},"host":"7ep-test-api.7-eleven.com","schemes":["https"],"security": [
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is Net Worth Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
+    "version": "V1",
+    "title": "Net Worth Data Service API"
+  },
+  "host": "virtserver.swaggerhub.com",
+  "basePath": "/CTS799/net-worthT/V1",
+  "schemes": [
+    "https"
+  ],
+  "security": [
     {
       "api_key": [
         "UVAUPLHYyG2heh1v09SUIQ7GqzYA27EZ"
       ]
     }
-  ],"paths":{"/net-worth":{"get":{"tags":["Net_worth"],"description":"Get","operationId":"get","produces":["application/json"],"parameters":[{"name":"requestId","in":"path","description":"requestId","required":true,"type":"string","x-example":"1234"},{"name":"store","in":"path","description":"store","required":true,"type":"string","x-example":"12345c"}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/QueryNetWorth"},"examples":{"application/json":{"ResponseServiceHeader":{"RequestId":"string"},"NetWorth":{"StoreLetterCode":"string","AvailableToDraw":0,"NetWorth":0,"MinimumNetWorth":0,"Status":"string"},"Error":{"Code":"string","Message":"string"}}}}},"security":[]}}},"definitions":{"QueryNetWorth":{"description":"Model for QueryNetWorth","required":["Error"],"properties":{"Error":{"$ref":"#/definitions/Error","x-example":"{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}"},"NetWorth":{"$ref":"#/definitions/NetWorth","x-example":"{\n  \"StoreLetterCode\": \"string\",\n  \"AvailableToDraw\": 0,\n  \"NetWorth\": 0,\n  \"MinimumNetWorth\": 0,\n  \"Status\": \"string\"\n}"},"ResponseServiceHeader":{"$ref":"#/definitions/ResponseServiceHeader","x-example":"{\n  \"RequestId\": \"string\"\n}"}}},"Error":{"description":"Model for Error","required":["Code"],"properties":{"Code":{"type":"string","x-example":"string"},"Message":{"type":"string","x-example":"string"}}},"NetWorth":{"description":"Model for NetWorth","required":["AvailableToDraw"],"properties":{"AvailableToDraw":{"type":"integer","format":"int32","x-example":"0"},"MinimumNetWorth":{"type":"integer","format":"int32","x-example":"0"},"NetWorth":{"type":"integer","format":"int32","x-example":"0"},"Status":{"type":"string","x-example":"string"},"StoreLetterCode":{"type":"string","x-example":"string"}}},"ResponseServiceHeader":{"description":"Model for ResponseServiceHeader","required":["RequestId"],"properties":{"RequestId":{"type":"string","x-example":"string"}}},"Get":{"description":"Model for Get","required":["Error"],"properties":{"Error":{"$ref":"#/definitions/Error","x-example":"{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}"},"NetWorth":{"$ref":"#/definitions/NetWorth","x-example":"{\n  \"StoreLetterCode\": \"string\",\n  \"AvailableToDraw\": 0,\n  \"NetWorth\": 0,\n  \"MinimumNetWorth\": 0,\n  \"Status\": \"string\"\n}"},"ResponseServiceHeader":{"$ref":"#/definitions/ResponseServiceHeader","x-example":"{\n  \"RequestId\": \"string\"\n}"}}}},"securityDefinitions":{},"security":[],"tags":[{"name":"Net_worth","description":"Operations about Net_worth"}]}
+  ],
+  "paths": {
+    "/net-worth": {
+      "get": {
+        "tags": [
+          "Net_worth"
+        ],
+        "description": "Get",
+        "operationId": "get",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "requestId",
+            "required": true,
+            "type": "string",
+            "x-example": "1234"
+          },
+          {
+            "name": "store",
+            "in": "path",
+            "description": "store",
+            "required": true,
+            "type": "string",
+            "x-example": "12345c"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "examples": {
+              "application/json": {
+                "ResponseServiceHeader": {
+                  "RequestId": "string"
+                },
+                "NetWorth": {
+                  "StoreLetterCode": "string",
+                  "AvailableToDraw": 0,
+                  "NetWorth": 0,
+                  "MinimumNetWorth": 0,
+                  "Status": "string"
+                },
+                "Error": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              }
+            },
+            "schema": {
+              "$ref": "#/definitions/QueryNetWorth"
+            }
+          }
+        },
+        "security": []
+      }
+    }
+  },
+  "securityDefinitions": {},
+  "definitions": {
+    "QueryNetWorth": {
+      "required": [
+        "Error"
+      ],
+      "properties": {
+        "Error": {
+          "$ref": "#/definitions/Error"
+        },
+        "NetWorth": {
+          "$ref": "#/definitions/NetWorth"
+        },
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/ResponseServiceHeader"
+        }
+      },
+      "description": "Model for QueryNetWorth"
+    },
+    "Error": {
+      "required": [
+        "Code"
+      ],
+      "properties": {
+        "Code": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Message": {
+          "type": "string",
+          "x-example": "string"
+        }
+      },
+      "description": "Model for Error"
+    },
+    "NetWorth": {
+      "required": [
+        "AvailableToDraw"
+      ],
+      "properties": {
+        "AvailableToDraw": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "0"
+        },
+        "MinimumNetWorth": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "0"
+        },
+        "NetWorth": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "0"
+        },
+        "Status": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "StoreLetterCode": {
+          "type": "string",
+          "x-example": "string"
+        }
+      },
+      "description": "Model for NetWorth"
+    },
+    "ResponseServiceHeader": {
+      "required": [
+        "RequestId"
+      ],
+      "properties": {
+        "RequestId": {
+          "type": "string",
+          "x-example": "string"
+        }
+      },
+      "description": "Model for ResponseServiceHeader"
+    },
+    "Get": {
+      "required": [
+        "Error"
+      ],
+      "properties": {
+        "Error": {
+          "$ref": "#/definitions/Error"
+        },
+        "NetWorth": {
+          "$ref": "#/definitions/NetWorth"
+        },
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/ResponseServiceHeader"
+        }
+      },
+      "description": "Model for Get"
+    }
+  }
+}
