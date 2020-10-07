@@ -5,7 +5,7 @@
     "version": "V4",
     "title": "Seveneleven"
   },
-  "host": "7ep-test-api.7-eleven.com",
+  "host": "7ep-test-api.7-eleven.com/net-worth/api",
   "tags": [
     {
       "name": "Net_worth",
