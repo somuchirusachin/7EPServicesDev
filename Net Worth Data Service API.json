@@ -23,7 +23,7 @@
     }
   ],
   "paths": {
-    "/net-worth/api": {
+    "/net-worth": {
       "get": {
         "tags": [
           "Net_worth"
