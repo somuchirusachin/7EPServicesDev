@@ -1,9 +1,9 @@
-{
+ {
   "swagger": "2.0",
   "info": {
-    "description": "This is Net Worth Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
-    "version": "V1",
-    "title": "Net Worth Data Service API"
+    "description": "API for 7ep-test-api.7-eleven.com",
+    "version": "V4",
+    "title": "Seveneleven"
   },
   "host": "7ep-test-api.7-eleven.com",
   "tags": [
@@ -15,7 +15,7 @@
   "schemes": [
     "https"
   ],
-  "security": [
+   "security": [
     {
       "api_key": [
         "UVAUPLHYyG2heh1v09SUIQ7GqzYA27EZ"
