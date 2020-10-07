@@ -6,7 +6,7 @@
     "title": "Net Worth Data Service API"
   },
   "host": "virtserver.swaggerhub.com",
-  "basePath": "/CTS799/net-worthT/V1",
+  "basePath": "/net-worth/api",
   "schemes": [
     "https"
   ],
