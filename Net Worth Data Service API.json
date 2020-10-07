@@ -5,7 +5,7 @@
     "version": "V1",
     "title": "Net Worth Data Service API"
   },
-  "host": "https://7ep-test-api.7-eleven.com",
+  "host": "7ep-test-api.7-eleven.com",
   "basePath": "/net-worth/api/",
   "schemes": [
     "https"
