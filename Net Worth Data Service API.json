@@ -69,7 +69,13 @@
       }
     }
   },
-  "securityDefinitions": {},
+  "securityDefinitions": {
+    "APIKeyHeader": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "X-API-Key"
+    }
+  },
   "definitions": {
     "QueryNetWorth": {
       "required": [
