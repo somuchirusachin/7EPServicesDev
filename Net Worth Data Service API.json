@@ -41,7 +41,7 @@
             "name": "X-Subscription-Key",
             "in": "header",
             "description": "X-Subscription-Key",
-            "required": false,
+            "required": true,
             "default": "UVAUPLHYyG2heh1v09SUIQ7GqzYA27EZ",
             "type": "string",
             "x-example": ""
