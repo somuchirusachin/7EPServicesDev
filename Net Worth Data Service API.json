@@ -1,23 +1,22 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Seveneleven",
+    "title": "Poceleven",
     "description": "API for 7ep-test-api.7-eleven.com",
     "version": "0.0.0"
   },
   "host": "7ep-test-api.7-eleven.com",
-  "basePath": "/net-worth/api/",
   "schemes": [
     "https"
   ],
   "paths": {
-    "/net-worth/{requestId}/{store}": {
+    "/net-worth/api/{requestId}/{store}": {
       "get": {
         "tags": [
-          "Networth"
+          "Net_worth"
         ],
-        "description": "Get",
-        "operationId": "get",
+        "description": "Api",
+        "operationId": "api",
         "produces": [
           "application/json"
         ],
@@ -25,7 +24,7 @@
           {
             "name": "requestId",
             "in": "path",
-            "description": "requestId",
+            "description": "Request ID",
             "required": true,
             "type": "string",
             "x-example": "1234"
@@ -33,35 +32,44 @@
           {
             "name": "store",
             "in": "path",
-            "description": "store",
+            "description": "Store",
             "required": true,
             "type": "string",
-            "x-example": "12345c"
+            "x-example": "13188B"
+          },
+          {
+            "name": "X-Subscription-Key",
+            "in": "header",
+            "description": "X-Subscription-Key",
+            "required": false,
+            "default": "UVAUPLHYyG2heh1v09SUIQ7GqzYA27EZ",
+            "type": "string",
+            "x-example": ""
           }
         ],
         "responses": {
           "200": {
             "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Api"
+            },
             "examples": {
               "application/json": {
                 "ResponseServiceHeader": {
-                  "RequestId": "string"
+                  "RequestId": "1234"
                 },
                 "NetWorth": {
-                  "StoreLetterCode": "string",
-                  "AvailableToDraw": 0,
-                  "NetWorth": 0,
-                  "MinimumNetWorth": 0,
-                  "Status": "string"
+                  "StoreLetterCode": "13188B",
+                  "AvailableToDraw": 23946.52,
+                  "NetWorth": 33946.52,
+                  "MinimumNetWorth": 10000,
+                  "Status": null
                 },
                 "Error": {
-                  "Code": "string",
-                  "Message": "string"
+                  "Code": null,
+                  "Message": null
                 }
               }
-            },
-            "schema": {
-              "$ref": "#/definitions/QueryNetWorth"
             }
           }
         },
@@ -69,106 +77,93 @@
       }
     }
   },
-  "securityDefinitions": {
-    "APIKeyHeader": {
-      "type": "apiKey",
-      "in": "header",
-      "name": "X-API-Key"
-    }
-  },
   "definitions": {
-    "QueryNetWorth": {
-      "required": [
-        "Error"
-      ],
-      "properties": {
-        "Error": {
-          "$ref": "#/definitions/Error"
-        },
-        "NetWorth": {
-          "$ref": "#/definitions/NetWorth"
-        },
-        "ResponseServiceHeader": {
-          "$ref": "#/definitions/ResponseServiceHeader"
-        }
-      },
-      "description": "Model for QueryNetWorth"
-    },
     "Error": {
+      "description": "Model for Error",
       "required": [
         "Code"
       ],
       "properties": {
         "Code": {
           "type": "string",
-          "x-example": "string"
+          "x-example": ""
         },
         "Message": {
           "type": "string",
-          "x-example": "string"
+          "x-example": ""
         }
-      },
-      "description": "Model for Error"
+      }
     },
     "NetWorth": {
+      "description": "Model for NetWorth",
       "required": [
         "AvailableToDraw"
       ],
       "properties": {
         "AvailableToDraw": {
-          "type": "integer",
-          "format": "int32",
-          "x-example": "0"
+          "type": "number",
+          "format": "float",
+          "x-example": "23946.52"
         },
         "MinimumNetWorth": {
           "type": "integer",
           "format": "int32",
-          "x-example": "0"
+          "x-example": "10000"
         },
         "NetWorth": {
-          "type": "integer",
-          "format": "int32",
-          "x-example": "0"
+          "type": "number",
+          "format": "float",
+          "x-example": "33946.52"
         },
         "Status": {
           "type": "string",
-          "x-example": "string"
+          "x-example": ""
         },
         "StoreLetterCode": {
           "type": "string",
-          "x-example": "string"
+          "x-example": "13188B"
         }
-      },
-      "description": "Model for NetWorth"
+      }
     },
     "ResponseServiceHeader": {
+      "description": "Model for ResponseServiceHeader",
       "required": [
         "RequestId"
       ],
       "properties": {
         "RequestId": {
           "type": "string",
-          "x-example": "string"
+          "x-example": "1234"
         }
-      },
-      "description": "Model for ResponseServiceHeader"
+      }
     },
-    "Get": {
+    "Api": {
+      "description": "Model for Api",
       "required": [
         "Error"
       ],
       "properties": {
         "Error": {
-          "$ref": "#/definitions/Error"
+          "$ref": "#/definitions/Error",
+          "x-example": "{\n  \"Code\": null,\n  \"Message\": null\n}"
         },
         "NetWorth": {
-          "$ref": "#/definitions/NetWorth"
+          "$ref": "#/definitions/NetWorth",
+          "x-example": "{\n  \"StoreLetterCode\": \"13188B\",\n  \"AvailableToDraw\": 23946.52,\n  \"NetWorth\": 33946.52,\n  \"MinimumNetWorth\": 10000,\n  \"Status\": null\n}"
         },
         "ResponseServiceHeader": {
-          "$ref": "#/definitions/ResponseServiceHeader"
+          "$ref": "#/definitions/ResponseServiceHeader",
+          "x-example": "{\n  \"RequestId\": \"1234\"\n}"
         }
-      },
-      "description": "Model for Get"
+      }
     }
-  }
+  },
+  "securityDefinitions": {},
+  "security": [],
+  "tags": [
+    {
+      "name": "Net_worth",
+      "description": "Operations about Net_worth"
+    }
+  ]
 }
