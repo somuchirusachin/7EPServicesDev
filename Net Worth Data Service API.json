@@ -159,7 +159,6 @@
     }
   },
   "securityDefinitions": {},
-  "security": [],
   "tags": [
     {
       "name": "Net_worth",
