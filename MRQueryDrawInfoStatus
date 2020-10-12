@@ -10,10 +10,10 @@
     "https"
   ],
   "paths": {
-    "/Enterprise_service_layer/drawinfostatus/api-docs/{requestId}/{storeLetterCode}/{supplierNumber}": {
+    "/drawinfostatus/api-docs/{requestId}/{storeLetterCode}/{supplierNumber}": {
       "get": {
         "tags": [
-          "Enterprise_service_layer"
+          "drawinfostatus"
         ],
         "description": "Draw info status",
         "operationId": "drawinfostatus",
@@ -86,7 +86,7 @@
   "security": [],
   "tags": [
     {
-      "name": "Enterprise_service_layer",
+      "name": "drawinfostatus",
       "description": "Operations about Enterprise_service_layer"
     }
   ]
