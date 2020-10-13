@@ -133,8 +133,7 @@
       ],
       "properties": {
         "Amount": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "x-example": "0"
         },
         "DatePaid": {
