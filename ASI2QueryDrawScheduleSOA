@@ -1,0 +1,219 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Asi2 Query Draw Schedule Soapckg",
+    "description": "API for 7ep-test-api.7-eleven.com",
+    "version": "0.0.0"
+  },
+  "host": "7ep-test-api.7-eleven.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/drawschedule/api/{requestId}/{supplierNumber}/{siteNumber}": {
+      "get": {
+        "tags": [
+          "Drawschedule"
+        ],
+        "description": "Api",
+        "operationId": "Api",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "description": "Request ID",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "supplierNumber",
+            "in": "path",
+            "description": "Supplier number",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "siteNumber",
+            "in": "path",
+            "description": "Site number",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Api"
+              }
+            },
+            "examples": {
+              "application/json": {
+                "DrawQueryInfo": [
+                  {
+                    "Oracle_Seq_No": 0,
+                    "Operation_Type": "string",
+                    "Supplier_Number": "string",
+                    "Store": "string",
+                    "Available_To_Draw": "string",
+                    "Draw_Type": "string",
+                    "Calculation_Type": "string",
+                    "Bank_Name": "string",
+                    "Account_Nick_Name": "string",
+                    "Bank_Account_Number": "string",
+                    "Ext_Bank_Account_Id": 0,
+                    "Requested_Draw_Amount": "string",
+                    "Requested_Date": "2020-10-13T07:24:28.433Z",
+                    "Status": "string",
+                    "End_Date": "2020-10-13T07:24:28.433Z"
+                  }
+                ],
+                "Error": {
+                  "Code": "string",
+                  "Message": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Default": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Api": {
+      "description": "Model for Api",
+      "required": [
+        "DrawQueryInfo"
+      ],
+      "properties": {
+        "DrawQueryInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DrawQueryInfo"
+          },
+          "x-example": "[\n  {\n    \"Oracle_Seq_No\": 0,\n    \"Operation_Type\": \"string\",\n    \"Supplier_Number\": \"string\",\n    \"Store\": \"string\",\n    \"Available_To_Draw\": \"string\",\n    \"Draw_Type\": \"string\",\n    \"Calculation_Type\": \"string\",\n    \"Bank_Name\": \"string\",\n    \"Account_Nick_Name\": \"string\",\n    \"Bank_Account_Number\": \"string\",\n    \"Ext_Bank_Account_Id\": 0,\n    \"Requested_Draw_Amount\": \"string\",\n    \"Requested_Date\": \"2020-10-13T07:24:28.433Z\",\n    \"Status\": \"string\",\n    \"End_Date\": \"2020-10-13T07:24:28.433Z\"\n  }\n]"
+        },
+        "Error": {
+          "$ref": "#/definitions/Error",
+          "x-example": "{\n  \"Code\": \"string\",\n  \"Message\": \"string\"\n}"
+        }
+      }
+    },
+    "Error": {
+      "description": "Model for Error",
+      "required": [
+        "Code"
+      ],
+      "properties": {
+        "Code": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Message": {
+          "type": "string",
+          "x-example": "string"
+        }
+      }
+    },
+    "DrawQueryInfo": {
+      "description": "Model for DrawQueryInfo",
+      "required": [
+        "Account_Nick_Name"
+      ],
+      "properties": {
+        "Account_Nick_Name": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Available_To_Draw": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Bank_Account_Number": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Bank_Name": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Calculation_Type": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Draw_Type": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "End_Date": {
+          "type": "string",
+          "format": "date-time",
+          "x-example": "2020-10-13T07:24:28.433Z"
+        },
+        "Ext_Bank_Account_Id": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "0"
+        },
+        "Operation_Type": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Oracle_Seq_No": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "0"
+        },
+        "Requested_Date": {
+          "type": "string",
+          "format": "date-time",
+          "x-example": "2020-10-13T07:24:28.433Z"
+        },
+        "Requested_Draw_Amount": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Status": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Store": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "Supplier_Number": {
+          "type": "string",
+          "x-example": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Default": {
+      "description": "Default Authentication",
+      "type": "apiKey",
+      "name": "X-Subscription-Key",
+      "in": "header"
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Drawschedule",
+      "description": "Operations about Drawschedule"
+    }
+  ]
+}
