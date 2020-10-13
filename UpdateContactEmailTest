@@ -1,0 +1,98 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Mr Update Contact Email",
+    "description": "API for 7ep-test-api.7-eleven.com",
+    "version": "0.0.0"
+  },
+  "host": "7ep-test-api.7-eleven.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/contactinfo/api/v1/updateContactEmail": {
+      "post": {
+        "tags": [
+          "Contactinfo"
+        ],
+        "description": "Api",
+        "operationId": "api",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Api",
+            "in": "body",
+            "description": "Api",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Api"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Api"
+            },
+            "examples": {
+              "application/json": {
+                "ERROR_CODE": "string",
+                "ERROR_MESSAGE": "string"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Default": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Api": {
+      "description": "Model for Api",
+      "required": [
+        "emailAddress",
+        "requestId",
+        "supplierNumber"
+      ],
+      "properties": {
+        "emailAddress": {
+          "type": "string",
+          "x-example": ""
+        },
+        "requestId": {
+          "type": "string",
+          "x-example": "string"
+        },
+        "supplierNumber": {
+          "type": "string",
+          "x-example": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Default": {
+      "description": "Default Authentication",
+      "type": "apiKey",
+      "name": "X-Subscription-Key",
+      "in": "header"
+    }
+  },
+  "security": [],
+  "tags": [
+    {
+      "name": "Contactinfo",
+      "description": "Operations about Contactinfo"
+    }
+  ]
+}
