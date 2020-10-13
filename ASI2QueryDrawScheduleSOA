@@ -164,8 +164,7 @@
           "x-example": "2020-10-13T07:24:28.433Z"
         },
         "Ext_Bank_Account_Id": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "x-example": "0"
         },
         "Operation_Type": {
@@ -173,8 +172,7 @@
           "x-example": "string"
         },
         "Oracle_Seq_No": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "x-example": "0"
         },
         "Requested_Date": {
