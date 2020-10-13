@@ -131,13 +131,11 @@
       ],
       "properties": {
         "AvailableToDraw": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "x-example": "0"
         },
         "DateTransferred": {
           "type": "string",
-          "format": "date-time",
           "x-example": "2020-10-13T09:35:28.922Z"
         },
         "FromStore": {
@@ -146,7 +144,6 @@
         },
         "RequestedDate": {
           "type": "string",
-          "format": "date-time",
           "x-example": "2020-10-13T09:35:28.922Z"
         },
         "Status": {
@@ -158,8 +155,7 @@
           "x-example": "string"
         },
         "TransferAmount": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "x-example": "0"
         }
       }
@@ -190,8 +186,7 @@
       ],
       "properties": {
         "RequestId": {
-          "type": "integer",
-          "format": "int32",
+          "type": "string",
           "x-example": "0"
         }
       }
