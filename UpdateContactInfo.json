@@ -80,8 +80,7 @@
             "name": "requestId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "description": ""
           },
           {
@@ -147,8 +146,8 @@
       "type": "object",
       "properties": {
         "requestId": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
+          
         },
         "supplierNumber": {
           "type": "string"
@@ -250,8 +249,7 @@
       "type": "object",
       "properties": {
         "RequestId": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "InstanceId": {
           "type": "string"
@@ -311,8 +309,7 @@
       "type": "object",
       "properties": {
         "requestId": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "supplierNumber": {
           "type": "string"
@@ -336,8 +333,7 @@
           }
         },
         "REQUEST_ID": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "Error": {
           "$ref": "#/definitions/Error"
