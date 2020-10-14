@@ -80,7 +80,7 @@
             "name": "requestId",
             "in": "path",
             "required": true,
-            "type": "string",
+            "type": "integer",
             "description": ""
           },
           {
@@ -146,8 +146,7 @@
       "type": "object",
       "properties": {
         "requestId": {
-          "type": "string"
-          
+          "type": "integer"
         },
         "supplierNumber": {
           "type": "string"
@@ -249,7 +248,7 @@
       "type": "object",
       "properties": {
         "RequestId": {
-          "type": "string"
+          "type": "integer"
         },
         "InstanceId": {
           "type": "string"
@@ -309,7 +308,7 @@
       "type": "object",
       "properties": {
         "requestId": {
-          "type": "string"
+          "type": "integer"
         },
         "supplierNumber": {
           "type": "string"
@@ -333,7 +332,8 @@
           }
         },
         "REQUEST_ID": {
-          "type": "string"
+          "type": "integer"
+          
         },
         "Error": {
           "$ref": "#/definitions/Error"
