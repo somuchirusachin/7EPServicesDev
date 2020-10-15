@@ -1,1 +1,142 @@
-{"swagger":"2.0","info":{"title":"Networtheleven","description":"API for 7ep-test-api.7-eleven.com","version":"0.0.0"},"host":"7ep-test-api.7-eleven.com","schemes":["https"],"paths":{"/net-worth/api/{requestId}/{store}":{"get":{"tags":["Net_worth"],"description":"Asi query net worth osb","operationId":"AsiQueryNetWorthOsb","produces":["application/json"],"parameters":[{"name":"requestId","in":"path","description":"Request ID","required":true,"type":"string","x-example":""},{"name":"store","in":"path","description":"Store","required":true,"type":"string","x-example":""}],"responses":{"200":{"description":"OK","schema":{"$ref":"#/definitions/AsiQueryNetWorthOsb"},"examples":{"application/json":{"ResponseServiceHeader":{"RequestId":"1234"},"NetWorth":{"StoreLetterCode":"13188b","AvailableToDraw":0,"NetWorth":0,"MinimumNetWorth":0,"Status":null},"QueryNetworth_Error":{"Code":null,"Message":null}}}}},"security":[{"Default":[]}]}}},"definitions":{"Error":{"description":"Model for Error","required":["Code"],"properties":{"Code":{"type":"string","x-example":""},"Message":{"type":"string","x-example":""}}},"NetWorth":{"description":"Model for NetWorth","required":["AvailableToDraw"],"properties":{"AvailableToDraw":{"type":"integer","format":"int32","x-example":"0"},"MinimumNetWorth":{"type":"integer","format":"int32","x-example":"0"},"NetWorth":{"type":"integer","format":"int32","x-example":"0"},"Status":{"type":"string","x-example":""},"StoreLetterCode":{"type":"string","x-example":"13188b"}}},"ResponseServiceHeader":{"description":"Model for ResponseServiceHeader","required":["RequestId"],"properties":{"RequestId":{"type":"string","x-example":"1234"}}},"AsiQueryNetWorthOsb":{"description":"Model for AsiQueryNetWorthOsb","required":["Error"],"properties":{"Error":{"$ref":"#/definitions/Error","x-example":"{\n  \"Code\": null,\n  \"Message\": null\n}"},"NetWorth":{"$ref":"#/definitions/NetWorth","x-example":"{\n  \"StoreLetterCode\": \"13188b\",\n  \"AvailableToDraw\": 0,\n  \"NetWorth\": 0,\n  \"MinimumNetWorth\": 0,\n  \"Status\": null\n}"},"ResponseServiceHeader":{"$ref":"#/definitions/ResponseServiceHeader","x-example":"{\n  \"RequestId\": \"1234\"\n}"}}}},"securityDefinitions":{"Default":{"description":"Default Authentication","type":"apiKey","name":"X-Subscription-Key","in":"header"}},"security":[],"tags":[{"name":"Net_worth","description":"Operations about Net_worth"}]}
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "V1",
+    "title": "Net Worth Data Service API",
+    "description": "This is Net Worth Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
+    "contact": {}
+  },
+  "host": "7ep-test-api.7-eleven.com",
+  "basePath": "/net-worth",
+  "securityDefinitions": {
+    "Subscription-Key": {
+      "type": "apiKey",
+      "description": "",
+      "name": "X-Subscription-Key",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/{requestId}/{store}": {
+      "get": {
+        "description": "",
+        "summary": "getNetWorthDetails",
+        "tags": [
+          "net-worth-controller"
+        ],
+        "operationId": "getNetWorthDetails",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "store",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "schema": {
+              "$ref": "#/definitions/NetWorthResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ErrorCode": {
+      "title": "ErrorCode",
+      "type": "object",
+      "properties": {
+        "Code": {
+          "type": "string"
+        },
+        "Message": {
+          "type": "string"
+        }
+      }
+    },
+    "NetWorthInfo": {
+      "title": "NetWorthInfo",
+      "type": "object",
+      "properties": {
+        "StoreLetterCode": {
+          "type": "string"
+        },
+        "AvailableToDraw": {
+          "type": "number",
+          "format": "double"
+        },
+        "NetWorth": {
+          "type": "number",
+          "format": "double"
+        },
+        "MinimumNetWorth": {
+          "type": "number",
+          "format": "double"
+        },
+        "Status": {
+          "type": "string"
+        }
+      }
+    },
+    "NetWorthResponse": {
+      "title": "NetWorthResponse",
+      "type": "object",
+      "properties": {
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/ResponseServiceHeader"
+        },
+        "NetWorth": {
+          "$ref": "#/definitions/NetWorthInfo"
+        },
+        "Error": {
+          "$ref": "#/definitions/ErrorCode"
+        }
+      }
+    },
+    "ResponseServiceHeader": {
+      "title": "ResponseServiceHeader",
+      "type": "object",
+      "properties": {
+        "RequestId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Subscription-Key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "net-worth-controller",
+      "description": ""
+    }
+  ]
+}
