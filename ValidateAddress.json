@@ -1,0 +1,242 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Address Service",
+    "description": "This service is used to validate address details.",
+    "contact": {}
+  },
+  "host": "7ep-test-api.7-eleven.com",
+  "basePath": "/address",
+  "securityDefinitions": {
+    "Subscription-Key": {
+      "type": "apiKey",
+      "description": "",
+      "name": "X-Subscription-Key",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/validate": {
+      "post": {
+        "description": "",
+        "summary": "validateAddress",
+        "tags": [
+          "address-controller"
+        ],
+        "operationId": "validateAddress",
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ValidateAddressResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AddressDTO": {
+      "title": "AddressDTO",
+      "type": "object",
+      "properties": {
+        "State": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "PostalCode": {
+          "type": "string"
+        },
+        "County": {
+          "type": "string"
+        },
+        "Province": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        }
+      }
+    },
+    "Header": {
+      "title": "Header",
+      "type": "object",
+      "properties": {
+        "RequestId": {
+          "type": "string"
+        },
+        "ApplicationId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "ServiceRequestDate": {
+          "type": "string"
+        },
+        "ServiceResponseDate": {
+          "type": "string"
+        },
+        "OperationStatus": {
+          "type": "string"
+        },
+        "SecurityHeader": {
+          "$ref": "#/definitions/SecurityHeader"
+        }
+      }
+    },
+    "SecurityHeader": {
+      "title": "SecurityHeader",
+      "type": "object",
+      "properties": {
+        "UserId": {
+          "type": "string"
+        },
+        "ResponsibilityName": {
+          "type": "string"
+        },
+        "ResponsibilityGroupName": {
+          "type": "string"
+        },
+        "SecurityGroupName": {
+          "type": "string"
+        },
+        "Role": {
+          "type": "string"
+        },
+        "OrgId": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidateAddressDTO": {
+      "title": "ValidateAddressDTO",
+      "type": "object",
+      "properties": {
+        "RequestServiceHeader": {
+          "$ref": "#/definitions/Header"
+        },
+        "Address": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddressDTO"
+          }
+        }
+      }
+    },
+    "ValidateAddressRequest": {
+      "title": "ValidateAddressRequest",
+      "type": "object",
+      "properties": {
+        "ValidateAddresses": {
+          "$ref": "#/definitions/ValidateAddressDTO"
+        }
+      }
+    },
+    "AddressValidationDTO": {
+      "title": "AddressValidationDTO",
+      "type": "object",
+      "properties": {
+        "ValidFlag": {
+          "type": "boolean"
+        },
+        "Address": {
+          "$ref": "#/definitions/AddressDTO"
+        }
+      }
+    },
+    "ErrorDTO": {
+      "title": "ErrorDTO",
+      "type": "object",
+      "properties": {
+        "SubSystem": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Details": {
+          "type": "string"
+        }
+      }
+    },
+    "ValidateAddressRespDTO": {
+      "title": "ValidateAddressRespDTO",
+      "type": "object",
+      "properties": {
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/Header"
+        },
+        "AddressValidation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddressValidationDTO"
+          }
+        },
+        "Error": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorDTO"
+          }
+        }
+      }
+    },
+    "ValidateAddressResponse": {
+      "title": "ValidateAddressResponse",
+      "type": "object",
+      "properties": {
+        "ValidateAddressesResp": {
+          "$ref": "#/definitions/ValidateAddressRespDTO"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Subscription-Key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "address-controller",
+      "description": ""
+    }
+  ]
+}
