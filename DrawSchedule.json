@@ -1,0 +1,306 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "V1",
+    "title": "DrawsSchedule Data Service API",
+    "description": "This is DrawsSchedule Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
+    "contact": {}
+  },
+  "host": "7ep-test-api.7-eleven.com",
+  "basePath": "/drawschedule",
+  "securityDefinitions": {
+    "Subscription-Key": {
+      "type": "apiKey",
+      "description": "",
+      "name": "X-Subscription-Key",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/{requestId}/{supplierNumber}/{siteNumber}": {
+      "get": {
+        "description": "",
+        "summary": "getDrawScheduleDetails",
+        "tags": [
+          "draw-schedule-controller"
+        ],
+        "operationId": "getDrawScheduleDetails",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32",
+            "description": ""
+          },
+          {
+            "name": "supplierNumber",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "siteNumber",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "schema": {
+              "$ref": "#/definitions/DrawQueryResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/api/drawschedule": {
+      "post": {
+        "description": "",
+        "summary": "updateDrawSchedule",
+        "tags": [
+          "draw-schedule-controller"
+        ],
+        "operationId": "updateDrawSchedule",
+        "deprecated": false,
+        "produces": [
+          "*/*"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/DrawScheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "schema": {
+              "$ref": "#/definitions/UpdateScheduleResponse"
+            },
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DrawQueryInfo": {
+      "title": "DrawQueryInfo",
+      "type": "object",
+      "properties": {
+        "Oracle_Seq_No": {
+          "type": "number",
+          "format": "double"
+        },
+        "Operation_Type": {
+          "type": "string"
+        },
+        "Supplier_Number": {
+          "type": "string"
+        },
+        "Store": {
+          "type": "string"
+        },
+        "Available_To_Draw": {
+          "type": "string"
+        },
+        "Draw_Type": {
+          "type": "string"
+        },
+        "Calculation_Type": {
+          "type": "string"
+        },
+        "Bank_Name": {
+          "type": "string"
+        },
+        "Account_Nick_Name": {
+          "type": "string"
+        },
+        "Bank_Account_Number": {
+          "type": "string"
+        },
+        "Ext_Bank_Account_Id": {
+          "type": "number",
+          "format": "double"
+        },
+        "Requested_Draw_Amount": {
+          "type": "string"
+        },
+        "Requested_Date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "End_Date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "DrawQueryResponse": {
+      "title": "DrawQueryResponse",
+      "type": "object",
+      "properties": {
+        "DrawQueryInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DrawQueryInfo"
+          }
+        },
+        "Error": {
+          "$ref": "#/definitions/Error"
+        }
+      }
+    },
+    "Error": {
+      "title": "Error",
+      "type": "object",
+      "properties": {
+        "Code": {
+          "type": "string"
+        },
+        "Message": {
+          "type": "string"
+        }
+      }
+    },
+    "DrawScheduleRequest": {
+      "title": "DrawScheduleRequest",
+      "type": "object",
+      "properties": {
+        "request_Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "draw_schedule": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UpdateSchedule"
+          }
+        }
+      }
+    },
+    "UpdateSchedule": {
+      "title": "UpdateSchedule",
+      "type": "object",
+      "properties": {
+        "Oracle_Seq_No": {
+          "type": "number",
+          "format": "double"
+        },
+        "Operation_Type": {
+          "type": "string"
+        },
+        "Supplier_Number": {
+          "type": "string"
+        },
+        "Store": {
+          "type": "string"
+        },
+        "Available_To_Draw": {
+          "type": "string"
+        },
+        "Draw_Type": {
+          "type": "string"
+        },
+        "Calculation_Type": {
+          "type": "string"
+        },
+        "Bank_Name": {
+          "type": "string"
+        },
+        "Account_Nick_Name": {
+          "type": "string"
+        },
+        "Bank_Account_Number": {
+          "type": "string"
+        },
+        "Ext_Bank_Account_Id": {
+          "type": "number",
+          "format": "double"
+        },
+        "Requested_Draw_Amount": {
+          "type": "string"
+        },
+        "Requested_Date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Status": {
+          "type": "string"
+        },
+        "End_Date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ResponseServiceHeader": {
+      "title": "ResponseServiceHeader",
+      "type": "object",
+      "properties": {
+        "RequestId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "UpdateScheduleResponse": {
+      "title": "UpdateScheduleResponse",
+      "type": "object",
+      "properties": {
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/ResponseServiceHeader"
+        },
+        "OracleSeqNo": {
+          "type": "number",
+          "format": "double"
+        },
+        "Error": {
+          "$ref": "#/definitions/Error"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Subscription-Key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "draw-schedule-controller",
+      "description": ""
+    }
+  ]
+}
