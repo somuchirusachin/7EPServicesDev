@@ -28,7 +28,7 @@
   "paths": {
     "/api/v1/query/{requestId}/{supplierNumber}": {
       "get": {
-        "description": "",
+        "description": "QueryBankInfo",
         "summary": "queryBankInfo",
         "tags": [
           "bank-info-controller"
