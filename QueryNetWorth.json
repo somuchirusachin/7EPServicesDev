@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/{requestId}/{store}": {
+    "/api/{requestId}/{storeNumber}": {
       "get": {
         "description": "",
         "summary": "getNetWorthDetails",
@@ -47,7 +47,7 @@
             "description": ""
           },
           {
-            "name": "store",
+            "name": "storeNumber",
             "in": "path",
             "required": true,
             "type": "string",
@@ -87,16 +87,13 @@
           "type": "string"
         },
         "AvailableToDraw": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "NetWorth": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "MinimumNetWorth": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "Status": {
           "type": "string"
@@ -111,10 +108,16 @@
           "$ref": "#/definitions/ResponseServiceHeader"
         },
         "NetWorth": {
-          "$ref": "#/definitions/NetWorthInfo"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NetWorthInfo"
+          }
         },
         "Error": {
-          "$ref": "#/definitions/ErrorCode"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorCode"
+          }
         }
       }
     },
