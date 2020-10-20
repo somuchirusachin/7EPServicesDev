@@ -28,7 +28,7 @@
   "paths": {
     "/api/v1/validate": {
       "post": {
-        "description": "ValidateAddress",
+        "description": "",
         "summary": "validateAddress",
         "tags": [
           "address-controller"
