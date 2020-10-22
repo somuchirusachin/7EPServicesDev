@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/{requestId}/{supplierNumber}/{fromStore}": {
+    "/api/v1/{RequestId}/{SupplierNumber}/{FromStore}": {
       "get": {
         "description": "",
         "summary": "getEquityTransfer",
@@ -40,22 +40,21 @@
         ],
         "parameters": [
           {
-            "name": "requestId",
-            "in": "path",
-            "required": true,
-            "type": "integer",
-            "format": "int64",
-            "description": ""
-          },
-          {
-            "name": "supplierNumber",
+            "name": "RequestId",
             "in": "path",
             "required": true,
             "type": "string",
             "description": ""
           },
           {
-            "name": "fromStore",
+            "name": "SupplierNumber",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "FromStore",
             "in": "path",
             "required": true,
             "type": "string",
@@ -132,7 +131,7 @@
             "required": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/DrawEquityRequest"
+              "$ref": "#/definitions/DrawEquityEntity"
             }
           }
         ],
@@ -153,6 +152,9 @@
       "title": "EquityTransfer",
       "type": "object",
       "properties": {
+        "OperationType": {
+          "type": "string"
+        },
         "FromStore": {
           "type": "string"
         },
@@ -160,20 +162,16 @@
           "type": "string"
         },
         "AvailableToDraw": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "TransferAmount": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
-        "RequestedDate": {
-          "type": "string",
-          "format": "date-time"
+        "RequestDate": {
+          "type": "string"
         },
-        "DateTransferred": {
-          "type": "string",
-          "format": "date-time"
+        "DateTransfered": {
+          "type": "string"
         },
         "Status": {
           "type": "string"
@@ -203,10 +201,16 @@
           "$ref": "#/definitions/ResponseServiceHeader"
         },
         "EquityTransfer": {
-          "$ref": "#/definitions/EquityTransferList"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EquityTransferList"
+          }
         },
         "Error": {
-          "$ref": "#/definitions/ErrorEntity"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorEntity"
+          }
         }
       }
     },
@@ -214,10 +218,19 @@
       "title": "ErrorEntity",
       "type": "object",
       "properties": {
+        "SubSystem": {
+          "type": "string"
+        },
         "Code": {
           "type": "string"
         },
+        "Type": {
+          "type": "string"
+        },
         "Message": {
+          "type": "string"
+        },
+        "Details": {
           "type": "string"
         }
       }
@@ -227,8 +240,22 @@
       "type": "object",
       "properties": {
         "RequestId": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
+        },
+        "ApplicationId": {
+          "type": "string"
+        },
+        "InstanceId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "ServiceResponseDate": {
+          "type": "string"
+        },
+        "OperationStatus": {
+          "type": "string"
         }
       }
     },
@@ -236,15 +263,74 @@
       "title": "EquityTransferRequest",
       "type": "object",
       "properties": {
-        "RequestId": {
-          "type": "integer",
-          "format": "int64"
+        "RequestServiceHeader": {
+          "$ref": "#/definitions/RequestServiceHeader"
         },
+        "Supplier": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Supplier"
+          }
+        }
+      }
+    },
+    "RequestServiceHeader": {
+      "title": "RequestServiceHeader",
+      "type": "object",
+      "properties": {
+        "ApplicationId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "RequestId": {
+          "type": "string"
+        },
+        "SecurityHeader": {
+          "$ref": "#/definitions/SecurityHeader"
+        },
+        "ServiceRequestDate": {
+          "type": "string"
+        }
+      }
+    },
+    "SecurityHeader": {
+      "title": "SecurityHeader",
+      "type": "object",
+      "properties": {
+        "OrgId": {
+          "type": "string"
+        },
+        "ResponsibilityGroupName": {
+          "type": "string"
+        },
+        "ResponsibilityName": {
+          "type": "string"
+        },
+        "Role": {
+          "type": "string"
+        },
+        "SecurityGroupName": {
+          "type": "string"
+        },
+        "UserId": {
+          "type": "string"
+        }
+      }
+    },
+    "Supplier": {
+      "title": "Supplier",
+      "type": "object",
+      "properties": {
         "EquityTransfer": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UpdateEquityTransfer"
           }
+        },
+        "SupplierNumber": {
+          "type": "string"
         }
       }
     },
@@ -264,21 +350,20 @@
         "ToStore": {
           "type": "string"
         },
+        "RequestId": {
+          "type": "string"
+        },
         "AvailableToDraw": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "TransferAmount": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
-        "RequestedDate": {
-          "type": "string",
-          "format": "date-time"
+        "RequestDate": {
+          "type": "string"
         },
-        "DateTransferred": {
-          "type": "string",
-          "format": "date-time"
+        "DateTransfered": {
+          "type": "string"
         },
         "Status": {
           "type": "string"
@@ -293,10 +378,16 @@
           "$ref": "#/definitions/ResponseServiceHeader"
         },
         "Status": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "Error": {
-          "$ref": "#/definitions/ErrorEntity"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ErrorEntity"
+          }
         }
       }
     },
@@ -304,54 +395,32 @@
       "title": "DrawEquityEntity",
       "type": "object",
       "properties": {
-        "DrawReqestId": {
-          "type": "number",
-          "format": "double"
-        },
-        "OperationType": {
+        "DRAW_REQUEST_ID": {
           "type": "string"
         },
-        "SupplierNumber": {
+        "OPERATION_TYPE": {
           "type": "string"
         },
-        "StoreNumber": {
+        "PAID_IN_AMOUNT": {
           "type": "string"
         },
-        "PaidInAmount": {
+        "PAID_IN_DATE": {
           "type": "string"
         },
-        "PaidInDate": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "ExtBankAccountId": {
-          "type": "number",
-          "format": "double"
-        },
-        "PaidInReason": {
+        "PAID_IN_EXT_BANK_ID": {
           "type": "string"
         },
-        "PaidInStatus": {
+        "PAID_IN_REASON": {
           "type": "string"
         },
-        "Status": {
+        "PAID_IN_STATUS": {
           "type": "string"
-        }
-      }
-    },
-    "DrawEquityRequest": {
-      "title": "DrawEquityRequest",
-      "type": "object",
-      "properties": {
-        "requestId": {
-          "type": "integer",
-          "format": "int64"
         },
-        "drawEquity": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/DrawEquityEntity"
-          }
+        "STORE_NUMBER": {
+          "type": "string"
+        },
+        "SUPPLIER_NUMBER": {
+          "type": "string"
         }
       }
     },
