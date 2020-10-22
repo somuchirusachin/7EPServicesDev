@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/{requestId}/{supplierNumber}/{siteNumber}": {
+    "/api/{requestId}/{supplierNumber}/{store}": {
       "get": {
         "description": "",
         "summary": "getDrawScheduleDetails",
@@ -43,8 +43,7 @@
             "name": "requestId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int32",
+            "type": "string",
             "description": ""
           },
           {
@@ -55,7 +54,7 @@
             "description": ""
           },
           {
-            "name": "siteNumber",
+            "name": "store",
             "in": "path",
             "required": true,
             "type": "string",
@@ -116,54 +115,50 @@
       "title": "DrawQueryInfo",
       "type": "object",
       "properties": {
-        "Oracle_Seq_No": {
-          "type": "number",
-          "format": "double"
-        },
-        "Operation_Type": {
+        "OracleSeqNo": {
           "type": "string"
         },
-        "Supplier_Number": {
+        "OperationType": {
+          "type": "string"
+        },
+        "SupplierNumber": {
           "type": "string"
         },
         "Store": {
           "type": "string"
         },
-        "Available_To_Draw": {
+        "AvailableToDraw": {
           "type": "string"
         },
-        "Draw_Type": {
+        "DrawType": {
           "type": "string"
         },
-        "Calculation_Type": {
+        "CalculationType": {
           "type": "string"
         },
-        "Bank_Name": {
+        "BankName": {
           "type": "string"
         },
-        "Account_Nick_Name": {
+        "AccountNickName": {
           "type": "string"
         },
-        "Bank_Account_Number": {
+        "BankAccountNumber": {
           "type": "string"
         },
-        "Ext_Bank_Account_Id": {
-          "type": "number",
-          "format": "double"
-        },
-        "Requested_Draw_Amount": {
+        "EXT_BANK_ACCOUNT_ID": {
           "type": "string"
         },
-        "Requested_Date": {
-          "type": "string",
-          "format": "date-time"
+        "RequestedDrawAmount": {
+          "type": "string"
+        },
+        "RequestedDate": {
+          "type": "string"
         },
         "Status": {
           "type": "string"
         },
-        "End_Date": {
-          "type": "string",
-          "format": "date-time"
+        "EndDate": {
+          "type": "string"
         }
       }
     },
@@ -171,14 +166,20 @@
       "title": "DrawQueryResponse",
       "type": "object",
       "properties": {
-        "DrawQueryInfo": {
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/Header"
+        },
+        "DrawSchedule": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/DrawQueryInfo"
           }
         },
         "Error": {
-          "$ref": "#/definitions/Error"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
         }
       }
     },
@@ -186,10 +187,40 @@
       "title": "Error",
       "type": "object",
       "properties": {
+        "SubSystem": {
+          "type": "string"
+        },
         "Code": {
           "type": "string"
         },
+        "Type": {
+          "type": "string"
+        },
         "Message": {
+          "type": "string"
+        },
+        "Details": {
+          "type": "string"
+        }
+      }
+    },
+    "Header": {
+      "title": "Header",
+      "type": "object",
+      "properties": {
+        "RequestId": {
+          "type": "string"
+        },
+        "ApplicationId": {
+          "type": "string"
+        },
+        "InstanceId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "OperationStatus": {
           "type": "string"
         }
       }
@@ -198,15 +229,65 @@
       "title": "DrawScheduleRequest",
       "type": "object",
       "properties": {
-        "request_Id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "draw_schedule": {
+        "DrawSchedule": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/UpdateSchedule"
           }
+        },
+        "RequestServiceHeader": {
+          "$ref": "#/definitions/UpdateHeader"
+        }
+      }
+    },
+    "SecurityHeaderUpdate": {
+      "title": "SecurityHeaderUpdate",
+      "type": "object",
+      "properties": {
+        "OrgId": {
+          "type": "string"
+        },
+        "ResponsibilityGroupName": {
+          "type": "string"
+        },
+        "ResponsibilityName": {
+          "type": "string"
+        },
+        "Role": {
+          "type": "string"
+        },
+        "SecurityGroupName": {
+          "type": "string"
+        },
+        "UserId": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateHeader": {
+      "title": "UpdateHeader",
+      "type": "object",
+      "properties": {
+        "ApplicationId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "RequestId": {
+          "type": "string"
+        },
+        "InstanceId": {
+          "type": "string"
+        },
+        "SecurityHeader": {
+          "$ref": "#/definitions/SecurityHeaderUpdate"
+        },
+        "ServiceResponseDate": {
+          "type": "string"
+        },
+        "OperationStatus": {
+          "type": "string"
         }
       }
     },
@@ -214,64 +295,50 @@
       "title": "UpdateSchedule",
       "type": "object",
       "properties": {
-        "Oracle_Seq_No": {
-          "type": "number",
-          "format": "double"
-        },
-        "Operation_Type": {
+        "OracleSeqNo": {
           "type": "string"
         },
-        "Supplier_Number": {
+        "OperationType": {
+          "type": "string"
+        },
+        "SupplierNumber": {
           "type": "string"
         },
         "Store": {
           "type": "string"
         },
-        "Available_To_Draw": {
+        "AvailableToDraw": {
           "type": "string"
         },
-        "Draw_Type": {
+        "DrawType": {
           "type": "string"
         },
-        "Calculation_Type": {
+        "CalculationType": {
           "type": "string"
         },
-        "Bank_Name": {
+        "BankName": {
           "type": "string"
         },
-        "Account_Nick_Name": {
+        "AccountNickName": {
           "type": "string"
         },
-        "Bank_Account_Number": {
+        "BankAccountNumber": {
           "type": "string"
         },
-        "Ext_Bank_Account_Id": {
-          "type": "number",
-          "format": "double"
-        },
-        "Requested_Draw_Amount": {
+        "EXT_BANK_ACCOUNT_ID": {
           "type": "string"
         },
-        "Requested_Date": {
-          "type": "string",
-          "format": "date-time"
+        "RequestedDrawAmount": {
+          "type": "string"
+        },
+        "RequestedDate": {
+          "type": "string"
         },
         "Status": {
           "type": "string"
         },
-        "End_Date": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "ResponseServiceHeader": {
-      "title": "ResponseServiceHeader",
-      "type": "object",
-      "properties": {
-        "RequestId": {
-          "type": "integer",
-          "format": "int32"
+        "EndDate": {
+          "type": "string"
         }
       }
     },
@@ -280,14 +347,19 @@
       "type": "object",
       "properties": {
         "ResponseServiceHeader": {
-          "$ref": "#/definitions/ResponseServiceHeader"
+          "$ref": "#/definitions/UpdateHeader"
+        },
+        "Status": {
+          "type": "string"
         },
         "OracleSeqNo": {
-          "type": "number",
-          "format": "double"
+          "type": "string"
         },
         "Error": {
-          "$ref": "#/definitions/Error"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
         }
       }
     }
@@ -303,4 +375,4 @@
       "description": ""
     }
   ]
-} 
+}
