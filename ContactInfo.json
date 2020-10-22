@@ -26,7 +26,7 @@
     "application/json"
   ],
   "paths": {
-    "/api/v1/{requestId}/{supplierNumber}": {
+    "/api/v1/{RequestId}/{SupplierNumber}": {
       "get": {
         "description": "",
         "summary": "getContactInfoDetails",
@@ -40,15 +40,14 @@
         ],
         "parameters": [
           {
-            "name": "requestId",
+            "name": "RequestId",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "format": "int64",
+            "type": "string",
             "description": ""
           },
           {
-            "name": "supplierNumber",
+            "name": "SupplierNumber",
             "in": "path",
             "required": true,
             "type": "string",
@@ -69,11 +68,11 @@
     "/api/v1/contactInfo": {
       "post": {
         "description": "",
-        "summary": "getContactInfo",
+        "summary": "updateContactInfo",
         "tags": [
           "contact-info-controller"
         ],
-        "operationId": "getContactInfo",
+        "operationId": "updateContactInfo",
         "deprecated": false,
         "produces": [
           "*/*"
@@ -103,6 +102,45 @@
         }
       }
     },
+    "/api/v1/contactEmail/{requestId}/{supplierNumber}": {
+      "get": {
+        "description": "",
+        "summary": "getQueryContactEmail",
+        "tags": [
+          "contact-info-controller"
+        ],
+        "operationId": "getQueryContactEmail",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "supplierNumber",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/QueryContactEmailResp"
+            },
+            "headers": {}
+          }
+        }
+      }
+    },
     "/api/v1/updateContactEmail": {
       "post": {
         "description": "",
@@ -125,7 +163,7 @@
             "required": true,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/ContactEmailDetail"
+              "$ref": "#/definitions/UpdateEmailRequest"
             }
           }
         ],
@@ -133,7 +171,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/UpdateContactEmailResponse"
+              "$ref": "#/definitions/EmailUpdateErrorResponse"
             },
             "headers": {}
           }
@@ -191,17 +229,20 @@
       "title": "ContactInfoResponse",
       "type": "object",
       "properties": {
-        "responseServiceHeader": {
+        "ResponseServiceHeader": {
           "$ref": "#/definitions/ResponseServiceHeader"
         },
-        "contactInfo": {
+        "ContactInfo": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/ContactInfo"
           }
         },
-        "error": {
-          "$ref": "#/definitions/Error"
+        "Error": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
         }
       }
     },
@@ -222,34 +263,57 @@
       "type": "object",
       "properties": {
         "RequestId": {
-          "type": "integer",
-          "format": "int64"
+          "type": "string"
         },
         "InstanceId": {
           "type": "string"
         }
       }
     },
-    "ContactInfoEntity": {
-      "title": "ContactInfoEntity",
+    "ContactInfoDetails": {
+      "title": "ContactInfoDetails",
       "type": "object",
       "properties": {
-        "OperationType": {
+        "AltAreaCode": {
           "type": "string"
         },
-        "Status": {
+        "AltPhone": {
+          "type": "string"
+        },
+        "AreaCode": {
+          "type": "string"
+        },
+        "CellPhone": {
+          "type": "string"
+        },
+        "City": {
+          "type": "string"
+        },
+        "ContactId": {
+          "type": "string"
+        },
+        "ContactNameAlt": {
+          "type": "string"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "Department": {
           "type": "string"
         },
         "EmailAddress": {
           "type": "string"
         },
-        "SupplierName": {
+        "Fax": {
           "type": "string"
         },
-        "SupplierNumber": {
+        "FaxAreaCode": {
           "type": "string"
         },
-        "Store": {
+        "FirstName": {
+          "type": "string"
+        },
+        "FirstNameAlt": {
           "type": "string"
         },
         "HomeAddress1": {
@@ -258,22 +322,91 @@
         "HomeAddress2": {
           "type": "string"
         },
-        "City": {
+        "HomePhone": {
+          "type": "string"
+        },
+        "InactiveDate": {
+          "type": "string"
+        },
+        "JobTitle": {
+          "type": "string"
+        },
+        "LastName": {
+          "type": "string"
+        },
+        "LastNameAlt": {
+          "type": "string"
+        },
+        "LocationCode": {
+          "type": "string"
+        },
+        "LocationId": {
+          "type": "string"
+        },
+        "MiddleName": {
+          "type": "string"
+        },
+        "OperatingUnitName": {
+          "type": "string"
+        },
+        "OperationType": {
+          "type": "string"
+        },
+        "OrgId": {
+          "type": "string"
+        },
+        "Phone": {
+          "type": "string"
+        },
+        "Prefix": {
+          "type": "string"
+        },
+        "ProgramApplicationId": {
+          "type": "string"
+        },
+        "ProgramId": {
+          "type": "string"
+        },
+        "ProgramUpdateDate": {
+          "type": "string"
+        },
+        "RequestId": {
           "type": "string"
         },
         "State": {
           "type": "string"
         },
-        "Country": {
+        "Status": {
+          "type": "string"
+        },
+        "Store": {
+          "type": "string"
+        },
+        "SupplierName": {
+          "type": "string"
+        },
+        "SupplierNumber": {
+          "type": "string"
+        },
+        "URL": {
+          "type": "string"
+        },
+        "UserDefinedAttribute": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserDefinedAttribute"
+          }
+        },
+        "VendorInterfaceId": {
+          "type": "string"
+        },
+        "VendorSiteCode": {
+          "type": "string"
+        },
+        "VendorSiteId": {
           "type": "string"
         },
         "ZipCode": {
-          "type": "string"
-        },
-        "CellPhone": {
-          "type": "string"
-        },
-        "HomePhone": {
           "type": "string"
         }
       }
@@ -282,18 +415,119 @@
       "title": "ContactInfoUpdateRequest",
       "type": "object",
       "properties": {
-        "requestId": {
-          "type": "integer",
-          "format": "int32"
+        "RequestServiceHeader": {
+          "$ref": "#/definitions/RequestServiceHeader"
         },
-        "supplierNumber": {
-          "type": "string"
-        },
-        "contactInfo": {
+        "Supplier": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ContactInfoEntity"
+            "$ref": "#/definitions/SupplierRequest"
           }
+        }
+      }
+    },
+    "RequestServiceHeader": {
+      "title": "RequestServiceHeader",
+      "type": "object",
+      "properties": {
+        "ApplicationId": {
+          "type": "string"
+        },
+        "LanguageCode": {
+          "type": "string"
+        },
+        "RequestId": {
+          "type": "string"
+        },
+        "ServiceRequestDate": {
+          "type": "string"
+        },
+        "SecurityHeader": {
+          "$ref": "#/definitions/SecurityHeader"
+        }
+      }
+    },
+    "SecurityHeader": {
+      "title": "SecurityHeader",
+      "type": "object",
+      "properties": {
+        "UserId": {
+          "type": "string"
+        },
+        "ResponsibilityName": {
+          "type": "string"
+        },
+        "ResponsibilityGroupName": {
+          "type": "string"
+        },
+        "SecurityGroupName": {
+          "type": "string"
+        },
+        "Role": {
+          "type": "string"
+        },
+        "OrgId": {
+          "type": "string"
+        }
+      }
+    },
+    "SupplierRequest": {
+      "title": "SupplierRequest",
+      "type": "object",
+      "properties": {
+        "ContactInfo": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContactInfoDetails"
+          }
+        },
+        "RequestID": {
+          "type": "string"
+        },
+        "SupplierName": {
+          "type": "string"
+        },
+        "SupplierNumber": {
+          "type": "string"
+        },
+        "SupplierSite": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UserDefinedAttribute": {
+      "title": "UserDefinedAttribute",
+      "type": "object",
+      "properties": {
+        "AttributeName": {
+          "type": "string"
+        },
+        "AttributeType": {
+          "type": "string"
+        },
+        "AttributeValue": {
+          "type": "string"
+        }
+      }
+    },
+    "ContactInfoUpdateError": {
+      "title": "ContactInfoUpdateError",
+      "type": "object",
+      "properties": {
+        "SubSystem": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "Message": {
+          "type": "string"
         }
       }
     },
@@ -301,46 +535,113 @@
       "title": "ContactInfoUpdateResponse",
       "type": "object",
       "properties": {
-        "ContactInfo": {
+        "Supplier": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/ContactInfo"
+            "$ref": "#/definitions/SupplierResponse"
           }
         },
-        "REQUEST_ID": {
-          "type": "integer",
-          "format": "int32"
+        "Error": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContactInfoUpdateError"
+          }
+        }
+      }
+    },
+    "SupplierResponse": {
+      "title": "SupplierResponse",
+      "type": "object",
+      "properties": {
+        "RequestID": {
+          "type": "string"
+        },
+        "SupplierSite": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ContactEmail": {
+      "title": "ContactEmail",
+      "type": "object",
+      "properties": {
+        "EmailAdderess": {
+          "type": "string"
+        }
+      }
+    },
+    "QueryContactEmailResp": {
+      "title": "QueryContactEmailResp",
+      "type": "object",
+      "properties": {
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/ResponseServiceEmailHeader"
+        },
+        "ContactEmail": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContactEmail"
+          }
         },
         "Error": {
-          "$ref": "#/definitions/Error"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
         }
       }
     },
-    "ContactEmailDetail": {
-      "title": "ContactEmailDetail",
+    "ResponseServiceEmailHeader": {
+      "title": "ResponseServiceEmailHeader",
       "type": "object",
       "properties": {
-        "requestId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "supplierNumber": {
-          "type": "string"
-        },
-        "emailAddress": {
+        "RequestId": {
           "type": "string"
         }
       }
     },
-    "UpdateContactEmailResponse": {
-      "title": "UpdateContactEmailResponse",
+    "SupplierEmailRequest": {
+      "title": "SupplierEmailRequest",
       "type": "object",
       "properties": {
-        "ERROR_CODE": {
+        "SupplierNumber": {
           "type": "string"
         },
-        "ERROR_MESSAGE": {
+        "EmailAddress": {
           "type": "string"
+        },
+        "OperationType": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateEmailRequest": {
+      "title": "UpdateEmailRequest",
+      "type": "object",
+      "properties": {
+        "RequestServiceHeader": {
+          "$ref": "#/definitions/RequestServiceHeader"
+        },
+        "Supplier": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SupplierEmailRequest"
+          }
+        }
+      }
+    },
+    "EmailUpdateErrorResponse": {
+      "title": "EmailUpdateErrorResponse",
+      "type": "object",
+      "properties": {
+        "Error": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
         }
       }
     }
