@@ -27,7 +27,7 @@
   ],
   "paths": {
     "/api/v1/validate": {
-      "post": {
+      "put": {
         "description": "",
         "summary": "validateAddress",
         "tags": [
@@ -65,8 +65,8 @@
     }
   },
   "definitions": {
-    "AddressDTO": {
-      "title": "AddressDTO",
+    "Address": {
+      "title": "Address",
       "type": "object",
       "properties": {
         "State": {
@@ -89,8 +89,8 @@
         }
       }
     },
-    "Header": {
-      "title": "Header",
+    "RequestServiceHeader": {
+      "title": "RequestServiceHeader",
       "type": "object",
       "properties": {
         "RequestId": {
@@ -103,12 +103,6 @@
           "type": "string"
         },
         "ServiceRequestDate": {
-          "type": "string"
-        },
-        "ServiceResponseDate": {
-          "type": "string"
-        },
-        "OperationStatus": {
           "type": "string"
         },
         "SecurityHeader": {
@@ -140,44 +134,35 @@
         }
       }
     },
-    "ValidateAddressDTO": {
-      "title": "ValidateAddressDTO",
-      "type": "object",
-      "properties": {
-        "RequestServiceHeader": {
-          "$ref": "#/definitions/Header"
-        },
-        "Address": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AddressDTO"
-          }
-        }
-      }
-    },
     "ValidateAddressRequest": {
       "title": "ValidateAddressRequest",
       "type": "object",
       "properties": {
-        "ValidateAddresses": {
-          "$ref": "#/definitions/ValidateAddressDTO"
+        "RequestServiceHeader": {
+          "$ref": "#/definitions/RequestServiceHeader"
+        },
+        "Address": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Address"
+          }
         }
       }
     },
-    "AddressValidationDTO": {
-      "title": "AddressValidationDTO",
+    "AddressValidation": {
+      "title": "AddressValidation",
       "type": "object",
       "properties": {
         "ValidFlag": {
           "type": "boolean"
         },
         "Address": {
-          "$ref": "#/definitions/AddressDTO"
+          "$ref": "#/definitions/Address"
         }
       }
     },
-    "ErrorDTO": {
-      "title": "ErrorDTO",
+    "Error": {
+      "title": "Error",
       "type": "object",
       "properties": {
         "SubSystem": {
@@ -197,24 +182,24 @@
         }
       }
     },
-    "ValidateAddressRespDTO": {
-      "title": "ValidateAddressRespDTO",
+    "ResponseServiceHeader": {
+      "title": "ResponseServiceHeader",
       "type": "object",
       "properties": {
-        "ResponseServiceHeader": {
-          "$ref": "#/definitions/Header"
+        "RequestId": {
+          "type": "string"
         },
-        "AddressValidation": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/AddressValidationDTO"
-          }
+        "ApplicationId": {
+          "type": "string"
         },
-        "Error": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ErrorDTO"
-          }
+        "LanguageCode": {
+          "type": "string"
+        },
+        "ServiceResponseDate": {
+          "type": "string"
+        },
+        "OperationStatus": {
+          "type": "string"
         }
       }
     },
@@ -222,8 +207,20 @@
       "title": "ValidateAddressResponse",
       "type": "object",
       "properties": {
-        "ValidateAddressesResp": {
-          "$ref": "#/definitions/ValidateAddressRespDTO"
+        "ResponseServiceHeader": {
+          "$ref": "#/definitions/ResponseServiceHeader"
+        },
+        "AddressValidation": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AddressValidation"
+          }
+        },
+        "Error": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Error"
+          }
         }
       }
     }
