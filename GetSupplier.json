@@ -1,56 +1,87 @@
-swagger: '2.0'
-info:
-  title: Get Supplier
-  description: API for 7ep-test-api.7-eleven.com
-  version: 0.0.0
-host: 7ep-test-api.7-eleven.com
-schemes:
-  - https
-paths:
-  /supplierdata/api/supplier:
-    get:
-      tags:
-        - Supplierdata
-      description: Api
-      operationId: api
-      produces:
-        - application/json
-      parameters:
-        - name: requestId
-          in: query
-          description: Request ID
-          required: false
-          type: string
-          x-example: '1234'
-        - name: displayName
-          in: query
-          description: Display name
-          required: false
-          type: string
-          x-example: parth
-        - name: email
-          in: query
-          description: Email
-          required: false
-          type: string
-          x-example: omshaantiinc@7-11.co
-      responses:
-        '200':
-          description: OK
-          schema:
-            type: string
-          examples:
-            application/json: "\"GetSupplierResp\": {\r\n    \"supplierID\": \"708309\",\r\n    \"storeNumber\": \"19667; 37231; 34189; 37021; 26166\",\r\n    \"storeSuffix\": \"19667:D; 37231:A; 34189:B; 37021:A; 26166:D\",\r\n    \"FullName\": \"Vaibhav Singh\",\r\n    \"userName\": null,\r\n    \"MailId\": null,\r\n    \"PrincipalName\": null,\r\n    \"userType\": \"Franchisee Owner\""
-      security:
-        - Default: []
-definitions: {}
-securityDefinitions:
-  Default:
-    description: Default Authentication
-    type: apiKey
-    name: X-Subscription-Key
-    in: header
-security: []
-tags:
-  - name: Supplierdata
-    description: Operations about Supplierdata
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "V1",
+    "title": "Get Supplier Data Service API",
+    "description": "This is Get Supplier Data Service under Enterprise Service Layer Data Initiatives by 7-Eleven",
+    "contact": {}
+  },
+  "host": "7ep-test-api.7-eleven.com",
+  "basePath": "/supplierdata",
+  "securityDefinitions": {
+    "Subscription-Key": {
+      "type": "apiKey",
+      "description": "",
+      "name": "X-Subscription-Key",
+      "in": "header"
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/supplier": {
+      "get": {
+        "description": "",
+        "summary": "getSupplierDetails",
+        "tags": [
+          "supplier-controller"
+        ],
+        "operationId": "getSupplierDetails",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "requestId",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "displayName",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response",
+            "schema": {
+              "type": "string"
+            },
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Subscription-Key": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "supplier-controller",
+      "description": ""
+    }
+  ]
+}
