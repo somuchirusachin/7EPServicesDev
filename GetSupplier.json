@@ -65,10 +65,51 @@
           "200": {
             "description": "default response",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/GetSupplierResponse"
             },
             "headers": {}
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "GetSupplierResp": {
+      "title": "GetSupplierResp",
+      "type": "object",
+      "properties": {
+        "storeNumber": {
+          "type": "string"
+        },
+        "storeSuffix": {
+          "type": "string"
+        },
+        "supplierID": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "userType": {
+          "type": "string"
+        },
+        "FullName": {
+          "type": "string"
+        },
+        "MailId": {
+          "type": "string"
+        },
+        "PrincipalName": {
+          "type": "string"
+        }
+      }
+    },
+    "GetSupplierResponse": {
+      "title": "GetSupplierResponse",
+      "type": "object",
+      "properties": {
+        "GetSupplierResp": {
+          "$ref": "#/definitions/GetSupplierResp"
         }
       }
     }
