@@ -1,0 +1,136 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "V1",
+        "title": "Store Market Manager Service",
+        "description": "This is Store Market Manager Service under Enterprise Service Layer Initiatives by 7-Eleven",
+        "contact": {}
+    },
+    "host": "7ep-test-api.7-eleven.com",
+    "basePath": "/store-market-manager",
+    "securityDefinitions": {
+        "Subscription-Key": {
+            "type": "apiKey",
+            "description": "",
+            "name": "X-Subscription-Key",
+            "in": "header"
+        }
+    },
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/v1/{requestId}/{storeNumber}": {
+            "get": {
+                "description": "",
+                "summary": "getMarketManagerDetails",
+                "tags": [
+                    "market-manager-controller"
+                ],
+                "operationId": "getMarketManagerDetails",
+                "deprecated": false,
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "requestId",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    },
+                    {
+                        "name": "storeNumber",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "description": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/MarketManagerResponse"
+                        },
+                        "headers": {}
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "title": "Error",
+            "type": "object",
+            "properties": {
+                "Code": {
+                    "type": "string"
+                },
+                "Message": {
+                    "type": "string"
+                }
+            }
+        },
+        "Market": {
+            "title": "Market",
+            "type": "object",
+            "properties": {
+                "StoreLetterCode": {
+                    "type": "string"
+                },
+                "ManagerName": {
+                    "type": "string"
+                },
+                "ManagerEmail": {
+                    "type": "string"
+                },
+                "Status": {
+                    "type": "string"
+                }
+            }
+        },
+        "MarketManagerResponse": {
+            "title": "MarketManagerResponse",
+            "type": "object",
+            "properties": {
+                "ResponseServiceHeader": {
+                    "$ref": "#/definitions/ResponseServiceHeader"
+                },
+                "Market": {
+                    "$ref": "#/definitions/Market"
+                },
+                "Error": {
+                    "$ref": "#/definitions/Error"
+                }
+            }
+        },
+        "ResponseServiceHeader": {
+            "title": "ResponseServiceHeader",
+            "type": "object",
+            "properties": {
+                "RequestId": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "Subscription-Key": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "market-manager-controller",
+            "description": ""
+        }
+    ]
+}
